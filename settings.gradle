@@ -1,0 +1,9 @@
+rootProject.name = 'applat-parent'
+
+include "applat-common"
+include "applat-omsweb"
+include "applat-security"
+//当项目名称与文件夹名称不相同的时候可以在这指定
+project(":applat-common").projectDir = "$rootDir/common" as File
+project(":applat-omsweb").projectDir = "$rootDir/omsweb" as File
+project(":applat-security").projectDir = "$rootDir/security" as File
