@@ -13,8 +13,7 @@ allprojects{
     //如果使用的ide是idea 先执行任务cleanIdea 再执行任务idea
     apply plugin: 'idea'
     apply plugin: 'eclipse-wtp'
-    apply plugin: 'java'
-    apply plugin:'war'
+
 
     group = 'com.isp'
     version = '1.0-SNAPSHOT'
@@ -49,6 +48,8 @@ ext {
 }
 
 subprojects{
+    apply plugin: 'java'
+    apply plugin:'war'
     repositories {
         maven {url "http://maven.oschina.net/content/groups/public"}
         mavenCentral()
