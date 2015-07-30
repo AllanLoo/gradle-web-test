@@ -1,9 +1,9 @@
-rootProject.name = 'applat-parent'
+rootProject.name = 'platform-parent'
 
-include "applat-common"
-include "applat-omsweb"
-include "applat-security"
+include "platform-common"
+include "platform-web"
+include "platform-security"
 //当项目名称与文件夹名称不相同的时候可以在这指定
-project(":applat-common").projectDir = "$rootDir/common" as File
-project(":applat-omsweb").projectDir = "$rootDir/omsweb" as File
-project(":applat-security").projectDir = "$rootDir/security" as File
+project(":platform-common").projectDir = "$rootDir/common" as File
+project(":platform-web").projectDir = "$rootDir/web" as File
+project(":platform-security").projectDir = "$rootDir/security" as File
