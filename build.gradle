@@ -78,7 +78,36 @@ subprojects{
         //cache
         compile("net.sf.ehcache:ehcache-core:$ehcacheVersion")
         compile("net.sf.ehcache:ehcache-web:$ehcacheWebVersion")
-
+        //bean validate
+        compile("org.hibernate:hibernate-validator:$validatorVersion")
+        //spring
+        compile("org.springframework:spring-core:$springVersion")
+        compile("org.springframework:spring-beans:$springVersion")
+        compile("org.springframework:spring-context:$springVersion")
+        compile("org.springframework:spring-context-support:$springVersion")
+        //web
+        compile("org.springframework:spring-webmvc:$springVersion")
+        compile("org.springframework:spring-web:$springVersion")
+        compile("org.springframework:spring-oxm:$springVersion")
+        compile("javax.servlet:servlet-api:2.5")
+        //spring
+        compile("org.springframework:spring-aop:$springVersion")
+        compile("org.springframework:spring-tx:$springVersion")
+        //spring orm
+        compile("org.springframework:spring-orm:$springVersion")
+        compile("org.springframework:spring-jdbc:$springVersion")
+        //mybatis
+        compile("org.mybatis:mybatis:$mybatisVersion")
+        compile("org.mybatis:mybatis-spring:$mybatisSpringVersion")
+        //aop
+        compile("org.aspectj:aspectjrt:1.7.4")
+        compile("org.aspectj:aspectjweaver:1.7.4")
+        compile("cglib:cglib:3.1")
+        //connection pool
+        compile("com.alibaba:druid:$druidVersion")
+        //jdbc driver
+        runtime("mysql:mysql-connector-java:$mysqlDriverVersion")
+        runtime("com.oracle:ojdbc14:$oracleDriverVersion")
         //工具
         compile("com.google.guava:guava:$guavaVersion")
     }
@@ -144,39 +173,13 @@ project(':platform-web'){
         compile project(":platform-common")
         compile project(":platform-security")
 
-        //spring
-        compile("org.springframework:spring-core:$springVersion")
-        compile("org.springframework:spring-beans:$springVersion")
-        compile("org.springframework:spring-context:$springVersion")
-        compile("org.springframework:spring-context-support:$springVersion")
-        compile("org.springframework:spring-aop:$springVersion")
-        compile("org.springframework:spring-tx:$springVersion")
-        //spring orm
-        compile("org.springframework:spring-orm:$springVersion")
-        compile("org.springframework:spring-jdbc:$springVersion")
+
         //web
-        compile("org.springframework:spring-webmvc:$springVersion")
-        compile("org.springframework:spring-web:$springVersion")
-        compile("org.springframework:spring-oxm:$springVersion")
         compile("taglibs:standard:1.1.2")
         compile("javax.servlet:jstl:1.2")
         compile("opensymphony:sitemesh:$sitemeshVersion")
         providedCompile("javax.servlet.jsp:jsp-api:2.2")
-        providedCompile("javax.servlet:servlet-api:2.5")
-        //aop
-        compile("org.aspectj:aspectjrt:1.7.4")
-        compile("org.aspectj:aspectjweaver:1.7.4")
-        compile("cglib:cglib:3.1")
-        //bean validate
-        compile("org.hibernate:hibernate-validator:$validatorVersion")
-        //mybatis
-        compile("org.mybatis:mybatis:$mybatisVersion")
-        compile("org.mybatis:mybatis-spring:$mybatisSpringVersion")
-        //connection pool
-        compile("com.alibaba:druid:$druidVersion")
-        //jdbc driver
-        runtime("mysql:mysql-connector-java:$mysqlDriverVersion")
-        runtime("com.oracle:ojdbc14:$oracleDriverVersion")
+
         //tomcat7
         tomcat "org.apache.tomcat.embed:tomcat-embed-core:${tomcatVersion}",
                 "org.apache.tomcat.embed:tomcat-embed-logging-juli:${tomcatVersion}",
