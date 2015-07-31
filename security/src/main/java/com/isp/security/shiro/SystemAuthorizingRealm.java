@@ -1,6 +1,5 @@
 package com.isp.security.shiro;
 
-import com.isp.security.user.entity.User;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;

@@ -1,8 +1,8 @@
 package com.isp.security.shiro;
 
 import com.isp.common.container.SpringContextHolder;
-import com.isp.security.user.dao.UserDao;
-import com.isp.security.user.entity.User;
+import com.isp.security.user.dao.SysUserDao;
+import com.isp.security.user.entity.SysUser;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.UnavailableSecurityManagerException;
 import org.apache.shiro.session.InvalidSessionException;
@@ -16,7 +16,7 @@ import org.apache.shiro.subject.Subject;
  * Created by allan on 15-6-22.
  */
 public class UserHolder {
-    private static UserDao userDao = SpringContextHolder.getBean(UserDao.class);
+    private static SysUserDao userDao = SpringContextHolder.getBean(SysUserDao.class);
 
     public static final String USER_CACHE = "userCache";
     public static final String USER_CACHE_ID_ = "id_";
@@ -28,7 +28,7 @@ public class UserHolder {
      * @param id
      * @return 取不到返回null
      */
-    public static User get(String id){
+    public static SysUser get(String id){
 //        User user = (User)CacheUtils.get(USER_CACHE, USER_CACHE_ID_ + id);
 //        if (user ==  null){
 //            user = userDao.get(id);
@@ -48,7 +48,7 @@ public class UserHolder {
      * @param loginName
      * @return 取不到返回null
      */
-    public static User getByLoginName(String loginName){
+    public static SysUser getByLoginName(String loginName){
 //        User user = (User)CacheUtils.get(USER_CACHE, USER_CACHE_LOGIN_NAME_ + loginName);
 //        if (user == null){
 //            user = userDao.getByLoginName(new User(null, loginName));
@@ -79,7 +79,7 @@ public class UserHolder {
      * 清除指定用户缓存
      * @param user
      */
-    public static void clearCache(User user){
+    public static void clearCache(SysUser user){
        // CacheUtils.remove(USER_CACHE, USER_CACHE_ID_ + user.getId());
         //CacheUtils.remove(USER_CACHE, USER_CACHE_LOGIN_NAME_ + user.getLoginName());
 
@@ -89,17 +89,17 @@ public class UserHolder {
      * 获取当前用户
      * @return 取不到返回 new User()
      */
-    public static User getUser(){
+    public static SysUser getUser(){
         SystemAuthorizingRealm.Principal principal = getPrincipal();
         if (principal!=null){
-            User user = get(principal.getId());
+            SysUser user = get(principal.getId());
             if (user != null){
                 return user;
             }
-            return new User();
+            return new SysUser();
         }
         // 如果没有登录，则返回实例化空的User对象。
-        return new User();
+        return new SysUser();
     }
 
 
