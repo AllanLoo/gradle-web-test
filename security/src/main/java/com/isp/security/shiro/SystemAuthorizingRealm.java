@@ -1,5 +1,6 @@
 package com.isp.security.shiro;
 
+import com.isp.security.user.entity.SysUser;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -36,10 +37,10 @@ public class SystemAuthorizingRealm extends AuthorizingRealm {
         private String name; // 姓名
 
 
-        public Principal(User user) {
+        public Principal(SysUser user) {
             this.id = user.getId();
-            this.loginName = user.getLoginName();
-            this.name = user.getName();
+            this.loginName = user.getUserName();
+            this.name = user.getRealName();
         }
 
         public String getId() {
