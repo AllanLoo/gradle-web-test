@@ -7,30 +7,57 @@ import com.isp.common.persistence.DataEntity;
  */
 public class User extends DataEntity<User>{
     /**
-     * �û���
+     * 帐号正常
+     */
+    public static final String ACCOUNT_STATUS_NORMAL = "0";
+    /**
+     * 帐号已被登录
+     */
+    public static final String ACCOUNT_STATUS_LOINDED = "1";
+    /**
+     * 帐号被限制
+     */
+    public static final String ACCOUNT_STATUS_LIMITED = "2";
+
+    /**
+     * 用户名
      */
     private String userName;
     /**
-     * ��ʵ����
+     * 真实姓名
      */
     private String realName;
     /**
-     * �û�����
+     * 用户密码
      */
     private String userPwd;
     /**
-     * �û�����
+     * 用户邮箱
      */
     private String userEmail;
     /**
-     * �û��ֻ���
+     * 用户手机号
      */
     private String phone;
     /**
-     * �û�״̬
+     * 用户状态（如：在职，离职）
      */
     private String userStatus;
+    /**
+     * 帐号状态（如：已登录，限制登录，未激活等）
+     */
+    private String accountStatus;
 
+    public User(){}
+
+    public User(String id){
+        this.id = id;
+    }
+
+    public User(String id,String userName){
+        this.id = id;
+        this.userName = userName;
+    }
     public String getUserName() {
         return userName;
     }
@@ -77,5 +104,13 @@ public class User extends DataEntity<User>{
 
     public void setUserStatus(String userStatus) {
         this.userStatus = userStatus;
+    }
+
+    public String getAccountStatus() {
+        return accountStatus;
+    }
+
+    public void setAccountStatus(String accountStatus) {
+        this.accountStatus = accountStatus;
     }
 }

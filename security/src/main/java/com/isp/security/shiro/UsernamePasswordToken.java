@@ -1,7 +1,7 @@
 package com.isp.security.shiro;
 
 /**
- * 用户和密码（包含验证码）令牌类����
+ * 用户和密码（包含验证码）令牌类
  * Created by allan on 15-6-20.
  */
 public class UsernamePasswordToken extends org.apache.shiro.authc.UsernamePasswordToken{

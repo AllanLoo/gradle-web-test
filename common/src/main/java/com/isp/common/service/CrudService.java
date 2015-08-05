@@ -2,6 +2,7 @@
 package com.isp.common.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.isp.common.persistence.CrudDao;
 import com.isp.common.persistence.DataEntity;
@@ -51,6 +52,27 @@ public abstract class CrudService<D extends CrudDao<T>, T extends DataEntity<T>>
 	 */
 	public List<T> findList(T entity) {
 		return dao.findList(entity);
+	}
+
+	public List<T> findList(Map<String,Object> params) {
+         return dao.findList(params);
+	}
+
+	/**
+	 * 查询所有数据
+	 * @param entity
+	 * @return
+	 */
+	public List<T> findAllList(T entity) {
+		return dao.findAllList(entity);
+	}
+
+	public List<T> findAllList(Map<String,Object> params) {
+		return dao.findAllList(params);
+	}
+
+	public List<T> findAllList() {
+		return dao.findAllList();
 	}
 	
 	/**

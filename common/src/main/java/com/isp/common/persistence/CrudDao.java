@@ -1,6 +1,7 @@
 package com.isp.common.persistence;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Dao支持类
@@ -22,11 +23,25 @@ public interface CrudDao<T> {
     public T get(T entity);
 
     /**
+     * 获取单条数据
+     * @param params
+     * @return
+     */
+    public T get(Map<String,Object> params);
+
+    /**
      * 查询数据列表，如果需要分页，请设置分页对象，如：entity.setPage(new Page<T>());
      * @param entity
      * @return
      */
     public List<T> findList(T entity);
+
+    /**
+     * 查询数据列表
+     * @param params
+     * @return
+     */
+    public List<T> findList(Map<String,Object> params);
 
     /**
      * 查询所有数据列表
@@ -35,6 +50,12 @@ public interface CrudDao<T> {
      */
     public List<T> findAllList(T entity);
 
+    /**
+     * 查询所有数据列表
+     * @param params
+     * @return
+     */
+    public List<T> findAllList(Map<String,Object> params);
     /**
      * 查询所有数据列表
      * @return
