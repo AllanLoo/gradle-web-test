@@ -1,6 +1,5 @@
 package com.isp.security.shiro.session;
 
-import com.isp.common.config.Global;
 import com.isp.common.utils.DateUtils;
 import com.isp.common.utils.HttpServletUtils;
 import com.isp.common.utils.StringUtils;
@@ -21,7 +20,7 @@ import java.util.Set;
 /**
  * Created by allan on 15-6-20.
  */
-public class CacheSessionDAO extends EnterpriseCacheSessionDAO implements SessionDao {
+public class CacheSessionDAO extends EnterpriseCacheSessionDAO implements SessionDAO {
     private Logger logger = LoggerFactory.getLogger(getClass());
 
     public CacheSessionDAO(){
