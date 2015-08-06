@@ -8,9 +8,8 @@ import com.isp.common.persistence.CrudDao;
 import com.isp.common.persistence.DataEntity;
 import com.isp.common.utils.StringUtils;
 import com.isp.common.web.bean.Page;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
-
-import javax.annotation.Resource;
 
 
 /**
@@ -24,7 +23,7 @@ public abstract class CrudService<D extends CrudDao<T>, T extends DataEntity<T>>
 	/**
 	 * 持久层对象
 	 */
-	@Resource
+	@Autowired
 	protected D dao;
 	
 	/**
