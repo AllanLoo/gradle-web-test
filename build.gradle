@@ -22,7 +22,15 @@ allprojects{
     targetCompatibility = 1.7//目标JDK版本
     compileJava.options.encoding = 'UTF-8'
     compileTestJava.options.encoding = 'UTF-8'
+
+    configurations {
+        provided
+    }
+    sourceSets.main.compileClasspath += configurations.provided
+    sourceSets.test.compileClasspath += configurations.provided
+    sourceSets.test.runtimeClasspath += configurations.provided
 }
+
 ext {
     commonsLangVersion = "3.3.2"
     commonsIoVersion = "2.4"
@@ -46,6 +54,7 @@ ext {
     sitemeshVersion="2.4.2"
     guavaVersion="17.0"
 }
+
 
 subprojects{
     repositories {
@@ -89,7 +98,7 @@ subprojects{
         compile("org.springframework:spring-webmvc:$springVersion")
         compile("org.springframework:spring-web:$springVersion")
         compile("org.springframework:spring-oxm:$springVersion")
-        compile("javax.servlet:servlet-api:2.5")
+        provided("javax.servlet:servlet-api:2.5")
         //spring
         compile("org.springframework:spring-aop:$springVersion")
         compile("org.springframework:spring-tx:$springVersion")
