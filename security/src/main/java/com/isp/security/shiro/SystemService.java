@@ -4,7 +4,7 @@ import com.google.common.collect.Maps;
 import com.isp.common.utils.Digests;
 import com.isp.common.utils.EhCacheUtils;
 import com.isp.common.utils.Encodes;
-import com.isp.security.shiro.session.SessionDao;
+import com.isp.security.shiro.session.SessionDAO;
 import org.apache.shiro.session.Session;
 
 import org.springframework.beans.factory.InitializingBean;
@@ -25,7 +25,7 @@ public class SystemService implements InitializingBean{
     public static final int SALT_SIZE = 8;
 
     @Resource
-    private SessionDao sessionDao;
+    private SessionDAO sessionDAO;
     @Override
     public void afterPropertiesSet() throws Exception {
 
@@ -58,6 +58,7 @@ public class SystemService implements InitializingBean{
      * @param bCleanCounting 登录失败计数器
      * @return true说明登录失败超过3次，需要输入验证码
      */
+    @SuppressWarnings("unchecked")
     public static boolean needValidateCode(String username,boolean bLoginFailed,boolean bCleanCounting) {
         Map<String, Integer> loginFailedMap = (Map<String, Integer>) EhCacheUtils.get("loginFailedMap");
         if (loginFailedMap==null){
@@ -83,14 +84,14 @@ public class SystemService implements InitializingBean{
      * @return
      */
     public Collection<Session> getActiveSessions(){
-        return sessionDao.getActiveSessions(false);
+        return sessionDAO.getActiveSessions(false);
     }
 
-    public SessionDao getSessionDao() {
-        return sessionDao;
+    public SessionDAO getSessionDAO() {
+        return sessionDAO;
     }
 
-    public void setSessionDao(SessionDao sessionDao) {
-        this.sessionDao = sessionDao;
+    public void setSessionDAO(SessionDAO sessionDAO) {
+        this.sessionDAO = sessionDAO;
     }
 }

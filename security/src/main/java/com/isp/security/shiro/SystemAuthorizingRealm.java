@@ -92,13 +92,13 @@ public class SystemAuthorizingRealm extends AuthorizingRealm {
 
         //如果系统设置不许一个帐号同时登录，那么将原来的帐号踢出去
         if (!"true".equals(Global.getConfig("user.multiAccountLogin"))){
-            Collection<Session> sessions = systemService.getSessionDao()
+            Collection<Session> sessions = systemService.getSessionDAO()
                     .getActiveSessions(true, principal, UserHolder.getSession());
             if (sessions.size() > 0){
                 // 如果是登录进来的，则踢出已在线用户
                 if (UserHolder.getSubject().isAuthenticated()){
                     for (Session session : sessions){
-                        systemService.getSessionDao().delete(session);
+                        systemService.getSessionDAO().delete(session);
                     }
                 }else{// 通过“记住我”进来的，并且当前用户已登录，则退出当前用户提示信息。
                     UserHolder.getSubject().logout();
