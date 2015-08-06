@@ -8,14 +8,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
- * ÓÃ»§µÇÂ¼
+ * ç”¨æˆ·ç™»å½•
  * Created by AllanLoo on 2015/8/4.
  */
 @Controller
 public class LoginController extends BaseController{
 
     /**
-     * È¥µÇÂ¼Ò³Ãæ
+     * å»ç™»å½•é¡µé¢
      * @return
      */
     @RequestMapping(value = "/login",method = RequestMethod.GET)
@@ -24,12 +24,12 @@ public class LoginController extends BaseController{
         if(principal != null) {
             return "redirect:/";
         }
-        System.out.println("----×ªÏòµÇÂ¼");
+        System.out.println("----è½¬å‘ç™»å½•");
         return "login";
     }
 
     /**
-     * È¥ÏµÍ³Ö÷½çÃæ
+     * å»ç³»ç»Ÿä¸»ç•Œé¢
      * @return
      */
     @RequestMapping(value = "/",method = RequestMethod.GET)
