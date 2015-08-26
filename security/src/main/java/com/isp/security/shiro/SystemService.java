@@ -55,11 +55,10 @@ public class SystemService implements InitializingBean{
      * 是否需要验证码,登录是否超过3次需要输入验证码
      * @param username 用户名
      * @param bLoginFailed 是否登录失败：true-登录失败，计数器加1
-     * @param bCleanCounting 登录失败计数器
      * @return true说明登录失败超过3次，需要输入验证码
      */
     @SuppressWarnings("unchecked")
-    public static boolean needValidateCode(String username,boolean bLoginFailed,boolean bCleanCounting) {
+    public static boolean needValidateCode(String username,boolean bLoginFailed) {
         Map<String, Integer> loginFailedMap = (Map<String, Integer>) EhCacheUtils.get("loginFailedMap");
         if (loginFailedMap==null){
             loginFailedMap = Maps.newHashMap();
@@ -74,10 +73,19 @@ public class SystemService implements InitializingBean{
             loginFailedNum++;
             loginFailedMap.put(username, loginFailedNum);
         }
-        if (bCleanCounting){
+
+        return loginFailedNum >= 3;
+    }
+
+    /**
+     * 清除登录失败计数器
+     * @param username 用户名
+     */
+    public static void cleanFailedLoginCount(String username){
+        Map<String, Integer> loginFailedMap = (Map<String, Integer>) EhCacheUtils.get("loginFailedMap");
+        if (loginFailedMap != null){
             loginFailedMap.remove(username);
         }
-        return loginFailedNum >= 3;
     }
     /**
      * 获得活动会话

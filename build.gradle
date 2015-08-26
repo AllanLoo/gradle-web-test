@@ -1,3 +1,9 @@
+/**
+ * Note:编译乱码时 可在bat文件里加上DEFAULT_JVM_OPTS="-Dfile.encoding=UTF-8"，或直接在命令行后面追加；
+ * 打包时-Pprofile=[dev|test|prod]；
+ * tomcat运行命令tomcatRun、tomcatStop
+ */
+
 //buildscript中声明是gradle脚本自身需要使用的资源
 buildscript {
     repositories {

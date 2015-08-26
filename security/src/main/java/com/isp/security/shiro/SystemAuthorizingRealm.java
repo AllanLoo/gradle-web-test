@@ -63,7 +63,7 @@ public class SystemAuthorizingRealm extends AuthorizingRealm {
             logger.debug("login submit, active session size: {}, username: {}", activeSessionSize, token.getUsername());
         }
         //校验登录验证码
-        if(SystemService.needValidateCode(token.getUsername(),false,false)) {
+        if(SystemService.needValidateCode(token.getUsername(),false)) {
             Session session = UserHolder.getSession();
             String code = (String)session.getAttribute(ValidateCodeServlet.VALIDATE_CODE);
             if (token.getCaptcha() == null || !token.getCaptcha().toUpperCase().equals(code)){

@@ -1,7 +1,8 @@
 package com.isp.web.login;
 
 import com.isp.common.web.BaseController;
-import com.isp.security.shiro.SystemAuthorizingRealm;
+import com.isp.security.shiro.SystemAuthorizingRealm.Principal;
+import com.isp.security.shiro.SystemService;
 import com.isp.security.shiro.UserHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,7 +21,7 @@ public class LoginController extends BaseController{
      */
     @RequestMapping(value = "/login",method = RequestMethod.GET)
     public String forwardLogin() {
-        SystemAuthorizingRealm.Principal principal = UserHolder.getPrincipal();
+        Principal principal = UserHolder.getPrincipal();
         if(principal != null) {
             return "redirect:/";
         }
@@ -34,7 +35,10 @@ public class LoginController extends BaseController{
      */
     @RequestMapping(value = "/",method = RequestMethod.GET)
     public String forwardMain() {
+        Principal principal = UserHolder.getPrincipal();
 
+        // 登录成功后，验证码计算器清零
+        SystemService.cleanFailedLoginCount(principal.getUsername());
         return "main";
     }
 
