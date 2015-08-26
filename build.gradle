@@ -20,8 +20,11 @@ allprojects{
 
     sourceCompatibility = 1.7//编译JDK版本
     targetCompatibility = 1.7//目标JDK版本
+
     compileJava.options.encoding = 'UTF-8'
     compileTestJava.options.encoding = 'UTF-8'
+    javadoc.options.encoding = 'UTF-8'
+    javadoc.options.charSet = 'UTF-8'
 
     configurations {
         provided
@@ -29,6 +32,7 @@ allprojects{
     sourceSets.main.compileClasspath += configurations.provided
     sourceSets.test.compileClasspath += configurations.provided
     sourceSets.test.runtimeClasspath += configurations.provided
+
 }
 
 ext {
