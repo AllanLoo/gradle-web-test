@@ -81,6 +81,7 @@ public class SystemService implements InitializingBean{
      * 清除登录失败计数器
      * @param username 用户名
      */
+    @SuppressWarnings("unchecked")
     public static void cleanFailedLoginCount(String username){
         Map<String, Integer> loginFailedMap = (Map<String, Integer>) EhCacheUtils.get("loginFailedMap");
         if (loginFailedMap != null){
