@@ -204,6 +204,19 @@ project(':platform-web'){
                 "org.apache.tomcat.embed:tomcat-embed-logging-juli:${tomcatVersion}",
                 "org.apache.tomcat.embed:tomcat-embed-jasper:${tomcatVersion}"
     }
+    tomcat {
+        httpPort = 8080
+        httpsPort = 8090
+        enableSSL = false
+        contextPath = '/patform'
+        users {
+            user {
+                username = 'admin'
+                password = 'admin'
+                roles = ['admin-gui', 'manager-gui']
+            }
+        }
+    }
 }
 
 

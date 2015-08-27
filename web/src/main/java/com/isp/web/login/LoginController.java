@@ -5,8 +5,12 @@ import com.isp.security.shiro.SystemAuthorizingRealm.Principal;
 import com.isp.security.shiro.SystemService;
 import com.isp.security.shiro.UserHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * 用户登录
@@ -21,14 +25,27 @@ public class LoginController extends BaseController{
      */
     @RequestMapping(value = "/login",method = RequestMethod.GET)
     public String forwardLogin() {
+        System.out.println("----转向登录");
         Principal principal = UserHolder.getPrincipal();
         if(principal != null) {
             return "redirect:/";
         }
-        System.out.println("----转向登录");
+
         return "login";
     }
 
+    /**
+     * 登录失败，真正登录的POST请求由shiro的Filter完成
+     * @param request
+     * @param response
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "/login",method = RequestMethod.POST)
+    public String loginFail(HttpServletRequest request, HttpServletResponse response, Model model){
+        System.out.println("失败了");
+        return "login";
+    }
     /**
      * 去系统主界面
      * @return

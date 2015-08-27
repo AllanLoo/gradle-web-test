@@ -10,4 +10,10 @@ import com.isp.security.user.entity.SysUser;
  */
 @MyBatisDao
 public interface SysUserDao extends CrudDao<User> {
+    /**
+     * 根据用户名查询用户信息
+     * @param username
+     * @return
+     */
+    public SysUser findUserByUserName(String username);
 }

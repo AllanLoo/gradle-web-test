@@ -2,6 +2,17 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.isp.security.user.dao.SysUserDao">
 
+   <resultMap id="userMap" type="SysUser">
+       <result column="USER_NAME" property="userName"/>
+       <result column="REAL_NAME" property="realName"/>
+       <result column="PASSWORD" property="userPwd"/>
+       <result column="EMAIL" property="userEmail"/>
+       <result column="USER_STATUS" property="userStatus"/>
+       <result column="ACCOUNT_STATUS" property="accountStatus"/>
+   </resultMap>
 
+ <select id="findUserByUserName" resultMap="userMap" parameterType="string">
+      SELECT ID,USER_NAME,REAL_NAME,PASSWORD,PHONE,USER_STAUS,EMAIL,ACCOUNT_STATUS FROM T_USER
+ </select>
 
 </mapper>

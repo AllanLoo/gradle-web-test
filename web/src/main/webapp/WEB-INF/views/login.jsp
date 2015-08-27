@@ -6,6 +6,7 @@
   系统登录页。
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ include file="/WEB-INF/views/include/taglib.jsp"%>
 <html>
 <head>
     <meta name="decorator" content="default"/>
@@ -24,7 +25,7 @@
     <!--主区域-->
     <div class="container-fluid login-container" style="height:645px">
         <div id="login-wraper">
-            <form class="form-horizontal">
+            <form class="form-horizontal" method="post" action="${ctx}/login">
                 <legend>
                     <span style="color:#08c;">系统登录</span>
                 </legend>
@@ -35,7 +36,7 @@
                 </div>
                 <div class="form-group">
                     <div class="col-md-8 col-md-offset-2">
-                        <input type="passowrd" class="form-control" id="password" placeholder="密码" maxlength="20"/>
+                        <input type="password" class="form-control" id="password" placeholder="密码" maxlength="20"/>
                     </div>
                 </div>
                 <div class="form-group" style="visibility:hidden">
@@ -48,7 +49,7 @@
                     <div class="col-md-offset-1 col-md-5">
                         <div class="checkbox">
                             <label style="color:#08c">
-                                <input type="checkbox">记住我
+                                <input type="checkbox" name="rememberMe">记住我
                             </label>
                         </div>
                     </div>

@@ -18,7 +18,7 @@ public class SysUserService extends CrudService<SysUserDao,User> {
      * @return
      */
     public SysUser findUserByUserName(String username) {
-        return null;
+        return dao.findUserByUserName(username);
     }
 
 

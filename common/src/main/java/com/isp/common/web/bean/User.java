@@ -40,11 +40,11 @@ public class User extends DataEntity<User>{
      */
     private String phone;
     /**
-     * 用户状态（如：在职，离职）
+     * 用户状态（如：1在职，0离职）
      */
     private String userStatus;
     /**
-     * 帐号状态（如：已登录，限制登录，未激活等）
+     * 帐号状态（如：1已登录，2限制登录，0默认等）
      */
     private String accountStatus;
 
