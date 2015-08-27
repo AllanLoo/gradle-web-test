@@ -11,7 +11,8 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.bmuschko:gradle-tomcat-plugin:2.2.2'//tomcat插件
+        //参考http://akhikhl.github.io/gretty-doc/Getting-started.html
+        classpath 'org.akhikhl.gretty:gretty:+' //内嵌的web容器插件，可用于jetty和tomcat
     }
 }
 
@@ -156,8 +157,8 @@ project(':platform-common'){
 
 project(':platform-web'){
     apply plugin:'war'
-    //申请tomcat插件，关于tomcat的插件可查看https://github.com/bmuschko/gradle-tomcat-plugin
-    apply plugin: 'com.bmuschko.tomcat'
+    //申请gretty插件
+    apply plugin: 'org.akhikhl.gretty'
     //源集处理
     sourceSets {
         main {
@@ -199,23 +200,13 @@ project(':platform-web'){
         compile("opensymphony:sitemesh:$sitemeshVersion")
         providedCompile("javax.servlet.jsp:jsp-api:2.2")
 
-        //tomcat7
-        tomcat "org.apache.tomcat.embed:tomcat-embed-core:${tomcatVersion}",
-                "org.apache.tomcat.embed:tomcat-embed-logging-juli:${tomcatVersion}",
-                "org.apache.tomcat.embed:tomcat-embed-jasper:${tomcatVersion}"
+
     }
-    tomcat {
-        httpPort = 8080
-        httpsPort = 8090
-        enableSSL = false
-        contextPath = '/patform'
-        users {
-            user {
-                username = 'admin'
-                password = 'admin'
-                roles = ['admin-gui', 'manager-gui']
-            }
-        }
+
+    gretty {
+        // supported values:
+        // 'jetty7', 'jetty8', 'jetty9', 'tomcat7', 'tomcat8'
+        servletContainer = 'tomcat7'
     }
 }
 
