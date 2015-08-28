@@ -1,3 +1,4 @@
+import com.isp.common.utils.IdGen;
 import com.isp.security.shiro.SystemService;
 import junit.framework.TestCase;
 
@@ -10,5 +11,10 @@ public class CaseTest extends TestCase{
         String pwd = "123456";
         String entryptPwd = SystemService.entryptPassword(pwd);
         System.out.println(entryptPwd);
+    }
+
+    public void testUUID(){
+        String uid = IdGen.uuid();
+        System.out.println(uid);
     }
 }

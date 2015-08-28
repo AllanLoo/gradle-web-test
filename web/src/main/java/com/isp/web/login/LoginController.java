@@ -25,7 +25,6 @@ public class LoginController extends BaseController{
      */
     @RequestMapping(value = "/login",method = RequestMethod.GET)
     public String forwardLogin() {
-        System.out.println("----转向登录");
         Principal principal = UserHolder.getPrincipal();
         if(principal != null) {
             return "redirect:/";

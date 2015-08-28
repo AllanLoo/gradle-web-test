@@ -12,7 +12,8 @@
    </resultMap>
 
  <select id="findUserByUserName" resultMap="userMap" parameterType="string">
-      SELECT ID,USER_NAME,REAL_NAME,PASSWORD,PHONE,USER_STAUS,EMAIL,ACCOUNT_STATUS FROM T_USER
+      SELECT ID,USER_NAME,REAL_NAME,PASSWORD,PHONE,USER_STATUS,EMAIL,ACCOUNT_STATUS FROM T_USER
+      WHERE USER_NAME = #{_parameter}
  </select>
 
 </mapper>

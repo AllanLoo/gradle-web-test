@@ -2,6 +2,7 @@ package com.isp.security.user.service;
 
 import com.isp.common.service.CrudService;
 import com.isp.common.web.bean.User;
+import com.isp.security.shiro.UserHolder;
 import com.isp.security.user.dao.SysUserDao;
 import com.isp.security.user.entity.SysUser;
 import org.springframework.stereotype.Service;
@@ -21,5 +22,9 @@ public class SysUserService extends CrudService<SysUserDao,User> {
         return dao.findUserByUserName(username);
     }
 
-
+    public void updateAccountStatus(String userId,String accountStatus){
+        SysUser user = new SysUser(userId);
+        user.setAccountStatus(accountStatus);
+        user.setUpdateById(UserHolder.getUser().getId());
+    }
 }
