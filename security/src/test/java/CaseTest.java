@@ -14,7 +14,7 @@ public class CaseTest extends TestCase{
     }
 
     public void testUUID(){
-        String uid = IdGen.uuid();
-        System.out.println(uid);
+        long lastTime = System.currentTimeMillis();
+        System.out.println(lastTime);
     }
 }

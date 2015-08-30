@@ -17,15 +17,18 @@
                 $("#msg").html("请填写用户名");
                 return false;
             }
-            if($("password").val().length==0){
+            if($("#password").val().length==0){
                 $("#msg").html("请填写密码");
                 return false;
             }
-            if($("#validateCodeArea").attr("visibility")=="display"&&$("validateCode").val().length==0){
+            if($("#validateCodeArea").css("visibility")=="visible"&&$("#validateCode").val().length==0){
                 $("#msg").html("请填写验证码");
                 return false;
             }
             return true;
+        }
+        function reloadValidateCode(img){
+            $(img).attr("src","${ctx}/static/validateCode?_="+(new Date()));
         }
     </script>
 </head>
@@ -48,18 +51,22 @@
                 </legend>
                 <div class="form-group">
                     <div class="col-md-8 col-md-offset-2">
-                        <input type="text" class="form-control" id="username" placeholder="用户名" maxlength="20"/>
+                        <input type="text" class="form-control" name="username" id="username"
+                               placeholder="用户名" maxlength="20" value="${username}"/>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-md-8 col-md-offset-2">
-                        <input type="password" class="form-control" id="password" placeholder="密码" maxlength="20"/>
+                        <input type="password" class="form-control" name="password" id="password" placeholder="密码" maxlength="20"/>
                     </div>
                 </div>
-                <div class="form-group" style="visibility:hidden" id="validateCodeArea">
-                    <label for="validateCode" class="col-md-3 control-label col-md-offset-2">验证码：</label>
-                    <div class="col-md-5">
-                        <input type="text" class="form-control" id="validateCode" placeholder="验证码" maxlength="10"/>
+                <div class="form-group" style="visibility:${needValidateCode==true?'visible':'hidden'}" id="validateCodeArea">
+                    <div class="col-md-5 col-md-offset-2">
+                        <input type="text" class="form-control" id="validateCode" name="validateCode" placeholder="验证码" maxlength="10"/>
+                    </div>
+                    <div class="col-md-3">
+                        <img style="cursor:pointer" src="${ctx}/static/validateCode"
+                             alt="验证码" title="看不清楚，单击重新获取" onclick="reloadValidateCode(this);"/>
                     </div>
                 </div>
                 <div class="form-group">
@@ -74,7 +81,7 @@
                         <button type="submit" class="btn btn-primary">登&nbsp;&nbsp;录</button>
                     </div>
                 </div>
-                <div id="msg" style="color: #A94442;"></div>
+                <div id="msg" style="color: #E0F30F;">${message}</div>
             </form>
         </div>
     </div>
