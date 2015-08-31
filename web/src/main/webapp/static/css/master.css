@@ -103,7 +103,7 @@ input {
   height: 70px;
   padding: 23px 100px 23px 100px;
   color: #999;
-  font-weight: 900px;
+  font-weight: 900;
   text-shadow: 0px 1px 1px #999;
 }
 
@@ -139,7 +139,7 @@ input {
   line-height: 40px;
   border-width: 0px 0px 1px;
   border-style: none none solid;
-  border-color: -moz-use-text-color -moz-use-text-color #E5E5E5;
+  border-color: #E5E5E5;
   -moz-border-top-colors: none;
   -moz-border-right-colors: none;
   -moz-border-bottom-colors: none;
@@ -189,7 +189,7 @@ input {
   height: 40px;
   padding: 10px 50px 10px 50px;
   color: #fff;
-  font-weight: 900px;
+  font-weight: 900;
   text-shadow: 0px 1px 1px #999;
 }
 
@@ -247,24 +247,57 @@ input {
   border-right: 1px solid #CCC;
 }
 /* line 153, ../sass/master.scss */
-#tabArea #menu-ctrl-left i {
+#tabArea #menu-ctrl-left a#tab-left-btn {
+  display: inline-block;
+  width: 35px;
+}
+/* line 157, ../sass/master.scss */
+#tabArea #menu-ctrl-left a#tab-left-btn i {
   top: 0;
   left: 9px;
   color: #ccc;
 }
-/* line 159, ../sass/master.scss */
+/* line 164, ../sass/master.scss */
+#tabArea #menu-ctrl-left a#tab-left-btn:hover i {
+  color: #45AEEA;
+}
+/* line 168, ../sass/master.scss */
 #tabArea #menu-ctrl-right {
   float: right;
   width: 35px;
   border-left: 1px solid #CCC;
 }
-/* line 164, ../sass/master.scss */
-#tabArea #menu-ctrl-right i {
+/* line 174, ../sass/master.scss */
+#tabArea #menu-ctrl-right a#tab-right-btn {
+  display: inline-block;
+  width: 35px;
+}
+/* line 177, ../sass/master.scss */
+#tabArea #menu-ctrl-right a#tab-right-btn i {
   top: 0;
   left: 9px;
   color: #ccc;
 }
-/* line 172, ../sass/master.scss */
+/* line 183, ../sass/master.scss */
+#tabArea #menu-ctrl-right a#tab-right-btn:hover i {
+  color: #45AEEA;
+}
+/* line 188, ../sass/master.scss */
+#tabArea .tabs {
+  float: left;
+  padding-top: 4px;
+  padding-left: 5px;
+  overflow: hidden;
+}
+/* line 194, ../sass/master.scss */
+#tabArea #tabs-container {
+  width: 9999px;
+  float: left;
+  height: 30px;
+  position: relative;
+  left: 0px;
+}
+/* line 200, ../sass/master.scss */
 #tabArea #tabs-container > li {
   float: left;
   margin-right: 5px;
@@ -287,27 +320,27 @@ input {
   border-top-right-radius: 7px;
   font-size: 9pt;
 }
-/* line 189, ../sass/master.scss */
+/* line 217, ../sass/master.scss */
 #tabArea #tabs-container li.tab-active {
   background: #fff;
 }
-/* line 193, ../sass/master.scss */
+/* line 221, ../sass/master.scss */
 #tabArea #tabs-container a.tab-close {
   margin-left: 5px;
   color: #ccc;
   font-size: 8pt;
 }
-/* line 197, ../sass/master.scss */
+/* line 225, ../sass/master.scss */
 #tabArea #tabs-container a.tab-close:hover {
   color: #FF2E00;
 }
 
-/* line 206, ../sass/master.scss */
+/* line 234, ../sass/master.scss */
 #mainArea > div {
   float: left;
   height: 100%;
 }
-/* line 208, ../sass/master.scss */
+/* line 236, ../sass/master.scss */
 #mainArea .navigation {
   width: 200px;
   background: #F5F5F5;
@@ -315,7 +348,7 @@ input {
   margin-right: 0px;
   font-size: 9pt;
 }
-/* line 215, ../sass/master.scss */
+/* line 243, ../sass/master.scss */
 #mainArea .navigation .navigation-menu-item {
   height: 35px;
   line-height: 35px;
@@ -326,7 +359,7 @@ input {
   position: relative;
   padding-left: 30px;
 }
-/* line 225, ../sass/master.scss */
+/* line 253, ../sass/master.scss */
 #mainArea .navigation .navigation-menu-item .menu-item-ico {
   display: block;
   height: 16px;
@@ -337,19 +370,19 @@ input {
   top: 9px;
   position: absolute;
 }
-/* line 237, ../sass/master.scss */
+/* line 265, ../sass/master.scss */
 #mainArea #menu-ctrl-bar {
   width: 9px;
   background: #F4F4F4 url("../images/menu_ctrl_left.png") no-repeat scroll center center;
   border-right: 1px solid #ccc;
 }
-/* line 242, ../sass/master.scss */
+/* line 270, ../sass/master.scss */
 #mainArea #contentArea {
-  border-left: 1px solid #cc;
-  border-right: 1px solid #cc;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
 }
 
-/* line 248, ../sass/master.scss */
+/* line 276, ../sass/master.scss */
 #loading {
   color: #666;
   font-size: 12pt;
@@ -369,7 +402,7 @@ input {
   box-shadow: 0 0 10px #ccc;
 }
 
-/* line 265, ../sass/master.scss */
+/* line 293, ../sass/master.scss */
 #loading-bg {
   display: none;
   width: 100%;
@@ -382,7 +415,7 @@ input {
   z-index: 3000;
 }
 
-/* line 276, ../sass/master.scss */
+/* line 304, ../sass/master.scss */
 .navigation-title {
   height: 27px;
   line-height: 27px;
@@ -392,20 +425,20 @@ input {
   font-size: 9pt;
 }
 
-/* line 285, ../sass/master.scss */
+/* line 313, ../sass/master.scss */
 .parting-line {
   border-bottom: solid 1px #ccc;
   padding-bottom: 5px;
   margin: 10px 0;
 }
-/* line 290, ../sass/master.scss */
+/* line 318, ../sass/master.scss */
 .parting-line span {
   border-bottom: solid 3px #A6EC77;
   font-size: 14px;
   font-weight: bold;
 }
 
-/* line 297, ../sass/master.scss */
+/* line 325, ../sass/master.scss */
 .tool-bar {
   border: solid 1px #ccc;
   height: 45px;
@@ -413,7 +446,7 @@ input {
   margin-top: 1px;
   padding-left: 5px;
 }
-/* line 304, ../sass/master.scss */
+/* line 332, ../sass/master.scss */
 .tool-bar .tools_separator {
   float: left;
   display: block;
@@ -425,7 +458,7 @@ input {
   border-left: 1px solid #ccc;
   border-right: 1px solid #fff;
 }
-/* line 316, ../sass/master.scss */
+/* line 344, ../sass/master.scss */
 .tool-bar a.tool-bar-btn {
   float: left;
   cursor: pointer;
@@ -435,21 +468,21 @@ input {
   height: 39px;
   overflow: hidden;
 }
-/* line 325, ../sass/master.scss */
+/* line 353, ../sass/master.scss */
 .tool-bar a.tool-bar-btn:hover {
   background: url(../images/tools_btn_bg.gif) no-repeat 0 0;
 }
-/* line 328, ../sass/master.scss */
+/* line 356, ../sass/master.scss */
 .tool-bar a.tool-bar-btn:hover span {
   background: url(../images/tools_btn_bg.gif) no-repeat right -39px;
 }
-/* line 332, ../sass/master.scss */
+/* line 360, ../sass/master.scss */
 .tool-bar a.tool-bar-btn span {
   display: block;
   padding: 0 10px 0 0;
   background: transparent;
 }
-/* line 337, ../sass/master.scss */
+/* line 365, ../sass/master.scss */
 .tool-bar a.tool-bar-btn span b {
   font-size: 9pt;
   font-weight: normal;
@@ -458,26 +491,26 @@ input {
   line-height: 15px;
 }
 
-/* line 348, ../sass/master.scss */
+/* line 376, ../sass/master.scss */
 .search-area {
   border: solid 1px #ccc;
   margin-top: 1px;
   padding: 5px 5px 0 5px;
 }
 
-/* line 354, ../sass/master.scss */
+/* line 382, ../sass/master.scss */
 .search-form-row {
   margin-bottom: 5px;
 }
-/* line 357, ../sass/master.scss */
+/* line 385, ../sass/master.scss */
 .search-form-row .form-group {
   margin-right: 10px;
 }
-/* line 360, ../sass/master.scss */
+/* line 388, ../sass/master.scss */
 .search-form-row label {
   font-size: 9pt;
 }
-/* line 363, ../sass/master.scss */
+/* line 391, ../sass/master.scss */
 .search-form-row input {
   font-size: 12px !important;
   height: 28px;

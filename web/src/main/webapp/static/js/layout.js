@@ -1,7 +1,14 @@
-$(function(){
-	frameResize();
+/**
+ * 首页初始化
+ */
+function initIndex(){
+    frameResize();
     writeDateInfo();
-});
+    tabsContainerResize();
+}
+/**
+ * 框架长宽重计算
+ */
 function frameResize() {
     resizeForFrame();
     
@@ -15,7 +22,14 @@ function frameResize() {
         $("#contentArea").width(winWidth-209);
     }
 }
-
+/**
+ * tab容器长度重计算
+ */
+function tabsContainerResize(){
+    var w=$("#tabArea").outerWidth()-$("#datetime").parent(".timetip").outerWidth(true)-
+        $("#menu-ctrl-left").outerWidth(true)-$("#menu-ctrl-right").outerWidth(true);
+    $("#tabs-container").parent(".tabs").width(w-5);
+}
 //当前日期
 function writeDateInfo() {
     var now = new Date();

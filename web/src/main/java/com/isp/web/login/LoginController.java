@@ -90,4 +90,13 @@ public class LoginController extends BaseController{
         return "main";
     }
 
+    /**
+     * 去系统首页
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "/sysIndex",method = RequestMethod.GET)
+    public String forwardSysIndex(Model model){
+        return "sysIndex";
+    }
 }
