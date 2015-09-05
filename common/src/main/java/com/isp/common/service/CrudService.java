@@ -8,6 +8,9 @@ import com.isp.common.persistence.CrudDao;
 import com.isp.common.persistence.DataEntity;
 import com.isp.common.utils.StringUtils;
 import com.isp.common.web.bean.Page;
+import com.isp.common.web.bean.User;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,13 +22,30 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Transactional(readOnly = true)
 public abstract class CrudService<D extends CrudDao<T>, T extends DataEntity<T>> {
-	
+	/**
+	 * 日志对象
+	 */
+	protected Logger logger = LoggerFactory.getLogger(getClass());
 	/**
 	 * 持久层对象
 	 */
 	@Autowired
 	protected D dao;
-	
+
+	/**
+	 * 插入之前执行方法，子类实现
+	 */
+	public abstract void preInsert(T entity);
+
+	/**
+	 * 更新之前执行方法，子类实现
+	 */
+	public abstract void preUpdate(T entity);
+
+	/**
+	 * 删除之前执行的方法，子类实现
+	 */
+	public abstract void preDelete(T entity);
 	/**
 	 * 获取单条数据
 	 * @param id
@@ -93,10 +113,10 @@ public abstract class CrudService<D extends CrudDao<T>, T extends DataEntity<T>>
 	@Transactional(readOnly = false)
 	public void save(T entity) {
 		if (StringUtils.isBlank(entity.getId())){
-			entity.preInsert();
+			preInsert(entity);
 			dao.insert(entity);
 		}else{
-			entity.preUpdate();
+			preUpdate(entity);
 			dao.update(entity);
 		}
 	}
@@ -107,6 +127,7 @@ public abstract class CrudService<D extends CrudDao<T>, T extends DataEntity<T>>
 	 */
 	@Transactional(readOnly = false)
 	public void delete(T entity) {
+		preDelete(entity);
 		dao.delete(entity);
 	}
 

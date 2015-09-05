@@ -13,10 +13,10 @@
 <meta http-equiv="Cache-Control" content="no-cache">
 <meta http-equiv="Cache-Control" content="no-store">
 
+
 <!-- Bootstrap -->
 <link href="${ctxStatic}/js/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link href="${ctxStatic}/css/master.css" rel="stylesheet">
-
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="${ctxStatic}/js/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
@@ -27,4 +27,5 @@
 <script src="${ctxStatic}/js/bootstrap/js/html5shiv.min.js"></script>
 <script src="${ctxStatic}/js/bootstrap/js/respond.min.js"></script>
 <![endif]-->
+<script src="${ctxStatic}/js/utils.js"></script>
 <script type="text/javascript">var ctx = '${ctx}', ctxStatic='${ctxStatic}';</script>

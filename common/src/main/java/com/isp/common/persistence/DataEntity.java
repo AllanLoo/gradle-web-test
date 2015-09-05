@@ -32,28 +32,6 @@ public abstract class DataEntity<T> extends BaseEntity<T> {
 	public DataEntity(String id) {
 		super(id);
 	}
-	
-	/**
-	 * 插入之前执行方法，需要手动调用
-	 */
-	@Override
-	public void preInsert(){
-		// 如果需要自定义产生主键
-		if (this.isGeneratePrimaryKey){
-			setId(IdGen.uuid());
-		}
-
-		this.updateDate = new Date();
-		this.createDate = this.updateDate;
-	}
-	
-	/**
-	 * 更新之前执行方法，需要手动调用
-	 */
-	@Override
-	public void preUpdate(){
-		this.updateDate = new Date();
-	}
 
 	public String getRemarks() {
 		return remarks;

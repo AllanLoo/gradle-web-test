@@ -16,7 +16,7 @@ public class Page<T> {
     private int pageNo = 1; // 当前页码
     private int pageSize = 20; // 页面大小，设置为“-1”表示不进行分页（分页无效）
 
-    private long count;// 总记录数，设置为“-1”表示不查询总数
+    private long recsCount;// 总记录数，设置为“-1”表示不查询总数
 
     private int first;// 首页索引
     private int last;// 尾页索引
@@ -97,7 +97,7 @@ public class Page<T> {
      * @param datas 本页数据对象列表
      */
     public Page(int pageNo, int pageSize, long count, List<T> datas) {
-        this.setCount(count);
+        this.setRecsCount(count);
         this.setPageNo(pageNo);
         this.pageSize = pageSize;
         this.datas = datas;
@@ -111,9 +111,9 @@ public class Page<T> {
         //1
         this.first = 1;
 
-        this.last = (int)(count / (this.pageSize < 1 ? 20 : this.pageSize) + first - 1);
+        this.last = (int)(recsCount / (this.pageSize < 1 ? 20 : this.pageSize) + first - 1);
 
-        if (this.count % this.pageSize != 0 || this.last == 0) {
+        if (this.recsCount % this.pageSize != 0 || this.last == 0) {
             this.last++;
         }
 
@@ -161,16 +161,16 @@ public class Page<T> {
      * 获取设置总数
      * @return
      */
-    public long getCount() {
-        return count;
+    public long getRecsCount() {
+        return recsCount;
     }
 
     /**
      * 设置数据总数
      * @param count
      */
-    public void setCount(long count) {
-        this.count = count;
+    public void setRecsCount(long count) {
+        this.recsCount = count;
         if (pageSize >= count){
             pageNo = 1;
         }
@@ -228,7 +228,7 @@ public class Page<T> {
      * 获取页面总数
      * @return getLast();
      */
-    public int getTotalPage() {
+    public int getTotalPages() {
         return getLast();
     }
 
@@ -316,7 +316,7 @@ public class Page<T> {
      */
     public int getFirstResult(){
         int firstResult = (getPageNo() - 1) * getPageSize();
-        if (firstResult >= getCount()) {
+        if (firstResult >= getRecsCount()) {
             firstResult = 0;
         }
         return firstResult;

@@ -88,16 +88,7 @@ public abstract class BaseEntity<T> implements Serializable {
 	public void setSqlMap(Map<String, String> sqlMap) {
 		this.sqlMap = sqlMap;
 	}
-	
-	/**
-	 * 插入之前执行方法，子类实现
-	 */
-	public abstract void preInsert();
-	
-	/**
-	 * 更新之前执行方法，子类实现
-	 */
-	public abstract void preUpdate();
+
 
 	/**
 	 * 是否自动生成主键（默认：false）

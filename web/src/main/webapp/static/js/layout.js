@@ -11,15 +11,20 @@ function initIndex(){
  */
 function frameResize() {
     resizeForFrame();
-    
+
     function resizeForFrame() {
         var winHeight = $(window).height();
-       
-        $("#mainArea").height(winHeight - 98);
-        $("#navigation-sidebar").height(winHeight - 118);
+        var topHeight = $("div.navbar-fixed-top:eq(0)").outerHeight()+$("#tabArea").outerHeight();
+        var footerHeight = $("div.navbar-fixed-bottom:eq(0)").outerHeight(true);
+        var middleHeight = winHeight - topHeight - footerHeight;
+        $("#mainArea").height(middleHeight);
+        $("#navigation-sidebar").height(middleHeight-$(".navigation-title").outerHeight());
+        $("#menu-ctrl-bar").height(middleHeight);
+        $("#menu-ctrl-bar a").css("margin-top",middleHeight*0.5-33);
 
         var winWidth = $(window).width();
-        $("#contentArea").width(winWidth-209);
+        var leftWidth = $(".navigation").outerWidth()+$("#menu-ctrl-bar").outerWidth();
+        $("#contentArea").width(winWidth-leftWidth-2);
     }
 }
 /**
@@ -54,4 +59,23 @@ function writeDateInfo() {
 
     $("#datetime").text(time);
     var timer = setTimeout("writeDateInfo()", 1000);
+}
+
+/**
+ * 隐藏或显示菜单栏
+ */
+function toggleSidebar(){
+    var winWidth = $(window).width();
+    if($(".navigation").is(":hidden")){
+        var leftWidth = $(".navigation").outerWidth()+$("#menu-ctrl-bar").outerWidth();
+        $("#contentArea").width(winWidth-leftWidth-2);
+        $(".navigation").show();
+        $("#menu-ctrl-bar").removeClass("ico-right").addClass("ico-left");
+    }else{
+        $(".navigation").hide();
+        var leftWidth = $("#menu-ctrl-bar").outerWidth();
+        $("#contentArea").width(winWidth-leftWidth-2);
+        $("#menu-ctrl-bar").removeClass("ico-left").addClass("ico-right");
+    }
+
 }
