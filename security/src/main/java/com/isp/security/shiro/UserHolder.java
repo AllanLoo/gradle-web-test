@@ -106,7 +106,7 @@ public class UserHolder {
     public static SysUser getUser(){
         SystemAuthorizingRealm.Principal principal = getPrincipal();
         if (principal!=null){
-            SysUser user = get(principal.getId());
+            SysUser user = get(principal.getUserId());
             if (user != null){
                 return user;
             }

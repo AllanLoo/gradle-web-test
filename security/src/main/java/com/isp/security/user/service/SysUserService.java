@@ -1,7 +1,6 @@
 package com.isp.security.user.service;
 
-import com.isp.common.service.CrudService;
-import com.isp.common.web.bean.User;
+
 import com.isp.security.shiro.SecurityService;
 import com.isp.security.shiro.UserHolder;
 import com.isp.security.user.dao.SysUserDao;
@@ -13,7 +12,7 @@ import org.springframework.stereotype.Service;
  * Created by AllanLoo on 2015/8/5.
  */
 @Service
-public class SysUserService extends SecurityService<SysUserDao,User> {
+public class SysUserService extends SecurityService<SysUserDao,SysUser> {
     /**
      * 通过用户名获取用户信息
      * @param username 用户名

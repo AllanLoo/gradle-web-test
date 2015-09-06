@@ -45,19 +45,6 @@ public interface CrudDao<T> {
 
     /**
      * 查询所有数据列表
-     * @param entity
-     * @return
-     */
-    public List<T> findAllList(T entity);
-
-    /**
-     * 查询所有数据列表
-     * @param params
-     * @return
-     */
-    public List<T> findAllList(Map<String,Object> params);
-    /**
-     * 查询所有数据列表
      * @return
      */
     public List<T> findAllList();

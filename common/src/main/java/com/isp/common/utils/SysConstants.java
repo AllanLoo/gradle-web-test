@@ -10,5 +10,13 @@ public interface SysConstants {
       */
     String  SYS_CONFIG_FILE_PATH = "sysconfig.properties";
 
+    /**
+     * session 里登录用户id的键
+     */
+    String SESSION_KEY_LOGIN_USER_ID = "loginUserId";
 
+    /**
+     * session 里登录用户名的键
+     */
+    String SESSION_KEY_LOGIN_USER_NAME = "loginUserName";
 }

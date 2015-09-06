@@ -3,7 +3,6 @@ package com.isp.security.shiro;
 import com.isp.common.config.Global;
 import com.isp.common.utils.Encodes;
 import com.isp.common.utils.StringUtils;
-import com.isp.common.web.bean.User;
 import com.isp.common.web.servlet.ValidateCodeServlet;
 import com.isp.security.func.entity.Func;
 import com.isp.security.role.entity.Role;
@@ -73,7 +72,7 @@ public class SystemAuthorizingRealm extends AuthorizingRealm {
 
         SysUser user = sysUserService.findUserByUserName(token.getUsername());
         if(user != null) {
-            if(User.ACCOUNT_STATUS_LIMITED.equals(user.getAccountStatus())) {
+            if(SysUser.ACCOUNT_STATUS_LIMITED.equals(user.getAccountStatus())) {
                 throw new AuthenticationException("msg:该帐号已被限制登录.");
             }
             byte[] salt = Encodes.decodeHex(user.getUserPwd().substring(0, 16));
@@ -106,7 +105,7 @@ public class SystemAuthorizingRealm extends AuthorizingRealm {
                 }
             }
         }
-        SysUser user = sysUserService.findUserByUserName(principal.getUsername());
+        SysUser user = sysUserService.findUserByUserName(principal.getUserName());
         if (user != null) {
             SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
             //TODO:
@@ -188,29 +187,29 @@ public class SystemAuthorizingRealm extends AuthorizingRealm {
 
         private static final long serialVersionUID = 1L;
 
-        private String id; // 编号
-        private String username; // 登录名
-        private String name; // 姓名
+        private String userId; // 编号
+        private String userName; // 登录名
+        private String realName; // 姓名
         private boolean mobileLogin; // 是否手机登录
 
 
-        public Principal(User user, boolean bMobileLogin) {
-            this.id = user.getId();
-            this.username = user.getUserName();
-            this.name = user.getRealName();
+        public Principal(SysUser user, boolean bMobileLogin) {
+            this.userId = user.getId();
+            this.userName = user.getUserName();
+            this.realName = user.getRealName();
             this.mobileLogin = bMobileLogin;
         }
 
-        public String getId() {
-            return id;
+        public String getUserId() {
+            return userId;
         }
 
-        public String getUsername() {
-            return username;
+        public String getUserName() {
+            return userName;
         }
 
-        public String getName() {
-            return name;
+        public String getRealName() {
+            return realName;
         }
 
         public boolean isMobileLogin() {
@@ -220,7 +219,7 @@ public class SystemAuthorizingRealm extends AuthorizingRealm {
         /**
          * 获取SESSIONID
          */
-        public String getSessionid() {
+        public String getSessionId() {
             try{
                 return (String) UserHolder.getSession().getId();
             }catch (Exception e) {
@@ -230,7 +229,7 @@ public class SystemAuthorizingRealm extends AuthorizingRealm {
 
         @Override
         public String toString() {
-            return id;
+            return userId;
         }
 
     }

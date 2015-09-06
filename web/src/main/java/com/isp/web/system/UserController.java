@@ -1,6 +1,7 @@
 package com.isp.web.system;
 
 import com.isp.common.web.BaseController;
+import com.isp.common.web.bean.Page;
 import com.isp.security.user.entity.SysUser;
 import com.isp.security.user.service.SysUserService;
 import org.springframework.stereotype.Controller;
@@ -30,9 +31,20 @@ public class UserController extends BaseController{
         return "user/user-mgr";
     }
 
+    /**
+     * 分页获取用户列表
+     * @param request
+     * @return
+     */
     @RequestMapping(value = "/listByPage",method = RequestMethod.GET)
     @ResponseBody
-    public List<SysUser> getUserListByPage(HttpServletRequest request){
-        return null;
+    public Page<SysUser> getUserListByPage(HttpServletRequest request,SysUser user){
+        Page<SysUser> page = new Page<SysUser>(request);
+        try {
+            page = sysUserService.findPage(page,user);
+        }catch (Exception e){
+            logger.error("分页显示用户列表时发生异常："+e.getMessage());
+        }
+        return page;
     }
 }

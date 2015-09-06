@@ -1,9 +1,12 @@
 package com.isp.security.shiro;
 
 import com.isp.common.utils.StringUtils;
+import com.isp.common.utils.SysConstants;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
+import org.apache.shiro.session.Session;
+import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.util.WebUtils;
 
 import javax.security.sasl.AuthenticationException;
@@ -83,6 +86,19 @@ public class FormAuthenticationFilter extends org.apache.shiro.web.filter.authc.
         request.setAttribute(getFailureKeyAttribute(), className);
         request.setAttribute(getMessageParam(), message);
         return true;
+    }
+
+    @Override
+    protected boolean onLoginSuccess(AuthenticationToken token, Subject subject,
+                                     ServletRequest request, ServletResponse response) throws Exception {
+        Session session = subject.getSession(false);
+        if (session == null){
+            session = subject.getSession();
+        }
+        SystemAuthorizingRealm.Principal principal = (SystemAuthorizingRealm.Principal)subject.getPrincipal();
+        session.setAttribute(SysConstants.SESSION_KEY_LOGIN_USER_ID,principal.getUserId());
+        session.setAttribute(SysConstants.SESSION_KEY_LOGIN_USER_NAME,principal.getUserName());
+        return super.onLoginSuccess(token, subject, request, response);
     }
 
     /**

@@ -8,7 +8,6 @@ import com.isp.common.persistence.CrudDao;
 import com.isp.common.persistence.DataEntity;
 import com.isp.common.utils.StringUtils;
 import com.isp.common.web.bean.Page;
-import com.isp.common.web.bean.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,19 +74,6 @@ public abstract class CrudService<D extends CrudDao<T>, T extends DataEntity<T>>
 
 	public List<T> findList(Map<String,Object> params) {
          return dao.findList(params);
-	}
-
-	/**
-	 * 查询所有数据
-	 * @param entity
-	 * @return
-	 */
-	public List<T> findAllList(T entity) {
-		return dao.findAllList(entity);
-	}
-
-	public List<T> findAllList(Map<String,Object> params) {
-		return dao.findAllList(params);
 	}
 
 	public List<T> findAllList() {
