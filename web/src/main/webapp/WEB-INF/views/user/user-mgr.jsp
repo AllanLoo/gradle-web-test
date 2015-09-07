@@ -55,7 +55,7 @@
     </form>
   </div>
   <!--数据列表-->
-  <div class="data-grid">
+  <div id="dataGrid">
     <table id="gridTable"></table>
     <div id="gridPager"></div>
   </div>
