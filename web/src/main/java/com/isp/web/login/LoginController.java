@@ -86,7 +86,7 @@ public class LoginController extends BaseController{
         Principal principal = UserHolder.getPrincipal();
 
         // 登录成功后，验证码计算器清零
-        SystemService.cleanFailedLoginCount(principal.getUsername());
+        SystemService.cleanFailedLoginCount(principal.getUserName());
         return "main";
     }
 
