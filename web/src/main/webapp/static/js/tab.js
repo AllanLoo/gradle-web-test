@@ -463,7 +463,7 @@
     var _closeTab = function(tabId){
         var currentIsSelected = $("li[id=tab-" + tabId + "]", $("#"+_defaultSetting.tabItemParentId)).hasClass("tab-active");
         if(currentIsSelected){
-            $("iframe[tab-iframe-=" + tabId + "]", $("#"+_defaultSetting.iframeItemParentId)).prev().show();
+            $("iframe[id=tab-iframe-" + tabId + "]", $("#"+_defaultSetting.iframeItemParentId)).prev().show();
             $("li[id=tab-" + tabId + "]",$("#"+_defaultSetting.tabItemParentId)).prev().addClass("tab-active");
         }
         var linkedIframe = $("iframe[id=tab-iframe-" + tabId + "]", $("#"+_defaultSetting.iframeItemParentId));
@@ -482,11 +482,24 @@
         $("li[id=tab-" + tabId + "]",$("#"+_defaultSetting.tabItemParentId)).remove();
     };
 
+    /**
+     * 刷新当前tab
+     * @param tabId
+     * @private
+     */
+    var _refreshActiveTab = function(){
+        var tabId = $("#"+_defaultSetting.tabItemParentId).find("li.tab-active").attr("id").replace("tab-","");
+        var iframe = $("iframe[id=tab-iframe-" + tabId + "]", $("#"+_defaultSetting.iframeItemParentId));
+        iframe.attr("src",iframe.attr("src"));
+    }
 
     function Tab(){
         this.open = function(tabId,tabText,iframeUrl){
             _addTab(tabId,tabText,iframeUrl,true,true);
         };
+        this.refreshActiveTab = function(){
+            _refreshActiveTab();
+        } ;
     }
     $.extend({tab:function(opt){
         _init(opt);

@@ -27,7 +27,7 @@
      * @param callback
      */
     CommonUtils.prototype.tip = function(level,msg,callback){
-
+        alert(msg);
     };
 
     /**
@@ -37,14 +37,12 @@
      * @param gridPagerTarget
      */
     function renderGridHtml(gridContainerTarget,gridTableTarget,gridPagerTarget){
-        var $gridTable = $("<table>",{id:CommonUtils.removeSelectorSign(gridTableTarget)});
+        var $gridTable = $("<table>",{id:this.removeSelectorSign(gridTableTarget)});
         $(gridContainerTarget).append($gridTable);
         if(gridPagerTarget){
-           var $gridPager = $("<div>",{id:CommonUtils.removeSelectorSign(gridPagerTarget)});
+           var $gridPager = $("<div>",{id:this.removeSelectorSign(gridPagerTarget)});
             $(gridContainerTarget).append($gridPager);
         }
-        var gridTip = $("<div>",{class:"gridTip"}).css("display","none").html("<span></span>");
-        $(gridContainerTarget).append(gridTip);
     }
 
     /**
@@ -53,8 +51,8 @@
      * @returns {boolean}
      */
     function cheekGridOpt(setting){
-        if($(setting.gridContainerTarget).length > 0){
-            CommonUtils.tip(3,"存在多个选择器为"+setting.gridContainerTarget+"的元素");
+        if($(setting.gridContainerTarget).length > 1){
+            this.tip(3,"存在多个选择器为"+setting.gridContainerTarget+"的元素");
             return false;
         }
         if($(setting.gridContainerTarget).length == 0){
@@ -68,7 +66,7 @@
      */
     CommonUtils.prototype.removeSelectorSign = function(selector){
         if(selector.charAt(0)=="."||selector.charAt(0)=="#"){
-            var res = selector.substring(0);
+            var res = selector.substring(1);
             return res;
         }
         return selector;
@@ -86,33 +84,35 @@
            gridPagerTarget:"#gridPager",
            method:"GET",
            datatype:"json",
-           height:$(window).height() - 168,
+           height:$(window).height() - 175,
            rownumbers:true,
            sortable:true,
-           sortorder:"asc",
+           sortorder:"desc",
            sortname:"id",
            param:{},
            pageSize:15,
            delay:true//延迟加载
-       };
+       },msg="";
         $.extend(setting,opt);
         //检查配置条件
-        if(!cheekGridOpt(setting)){
+        if(!cheekGridOpt.call(this,setting)){
             return;
         }
-        renderGridHtml(setting.gridContainerTarget,setting.gridTableTarget,setting.gridPagerTarget);
+        //创建grid的html元素
+        renderGridHtml.call(this,setting.gridContainerTarget,setting.gridTableTarget,setting.gridPagerTarget);
        if(setting.delay){
+           msg = "请点击查询按钮进行数据检索";
            setting.datatype = "local";
        }
 
-       var gridHandler = $(setting.gridTableTarget).jqGrid({
+       var gridHandler = $(setting.gridContainerTarget).find(setting.gridTableTarget).jqGrid({
             url:setting.url,
             mtype:setting.method,
             datatype: setting.datatype,
             height: setting.height,
             autowidth: true,
             colModel:setting.colModel,
-            pager: setting.gridPagerTarget,
+            pager: $(setting.gridContainerTarget).find(setting.gridPagerTarget),
             postData:setting.param,
             rowNum: setting.pageSize,
             sortname: setting.sortname,
@@ -120,6 +120,7 @@
             rownumbers: setting.rownumbers,
             shrinkToFit: false,
            rowList:[15,20,50,100],
+           delay:true,
            jsonReader : {
                root:"datas",
                page: "pageNo",
@@ -128,14 +129,17 @@
                records: "count"
            },
            loadError:function(xhr,status,error){
+              alert("出错了");
+           },
+           loadComplete:function(xhr){
 
            }
-       });
+      });
         var grid = {
             handler:gridHandler,
             loadData:function(param){
                 if(setting.delay){
-                    gridHandler.setGridParam({datatype:'json'});
+                    gridHandler.setGridParam({datatype:'json',delay:false});//将延迟关闭，该状态控制了查询结果的提示消息，这里状态需要改变一下
                 }
                 if(param){
                     gridHandler.setGridParam({postData:param});

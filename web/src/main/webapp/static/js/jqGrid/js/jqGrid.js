@@ -2018,7 +2018,7 @@ $.jgrid = {
                             $("#first" + tspg + ", #prev" + tspg).removeClass('ui-state-disabled');
                             if (ts.p.toppager) { $("#first_t" + tspg_t + ", #prev_t" + tspg_t).removeClass('ui-state-disabled'); }
                         }
-                        if (cp === last || cp === 0) {
+                        if (cp === last || cp === 0 || last ===0) {
                             $("#next" + tspg + ", #last" + tspg).addClass('ui-state-disabled').removeClass('ui-state-hover');
                             if (ts.p.toppager) { $("#next_t" + tspg_t + ", #last_t" + tspg_t).addClass('ui-state-disabled').removeClass('ui-state-hover'); }
                         } else {
@@ -2066,7 +2066,8 @@ $.jgrid = {
                 $jqgrid_bdiv.find('.jqgridNotdata').remove();
                 var re_records = $("#" + jgrid).getGridParam('records');
                 if (re_records == 0 || re_records == null) {
-                    $jqgrid_bdiv.append('<div class="jqgridNotdata">没有找到您要的相关数据</div>');
+                    var msg = ts.p.delay ? "请进行数据检索":"没有找到您要的相关数据";
+                    $jqgrid_bdiv.append('<div class="jqgridNotdata">'+msg+'</div>');
                     if ($('.ui-jqgrid-btable').width() > $jqgrid_bdiv.width()) {
                         $('.jqgridNotdata').width($('.ui-jqgrid-btable').width());
                     } else {
@@ -2239,7 +2240,7 @@ $.jgrid = {
             },
             setPager = function (pgid, tp) {
                 // TBD - consider escaping pgid with pgid = $.jgrid.jqID(pgid);
-                var sep = "<td class='ui-pg-button' style='width:4px;'><span class='ui-separator'></span></td>",
+                var sep = "<td class='/*ui-pg-button ui-state-disabled*/' style='width:4px;'><span class='ui-separator'></span></td>",
                 pginp = "",
                 pgl = "<table cellspacing='0' cellpadding='0' border='0' style='table-layout:auto;float:left;' class='ui-pg-table'><tbody><tr>",
                 str = "", pgcnt, lft, cent, rgt, twd, tdw, i,
@@ -2351,7 +2352,7 @@ $.jgrid = {
                         if (key === 13) {
                             if (!clearVals('system')) { return false; }
                             $(this).val(intNum($(this).val(), 1));
-                            ts.p.page = ($(this).val() > 0) ? $(this).val() : ts.p.page;
+                            ts.p.page = ($(this).val() > 0 && ts.p.total >=$(this).val()) ? $(this).val() : ts.p.page;
                             populate();
                             return false;
                         }

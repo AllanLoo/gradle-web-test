@@ -50,8 +50,15 @@
       ]
       });
     });
+    /**
+     * 去首页
+     */
     function openSysIndexTab(){
       tabObj.open("000","系统主页","....");
+    }
+
+    function refresh(){
+      tabObj.refreshActiveTab();
     }
   </script>
 </head>

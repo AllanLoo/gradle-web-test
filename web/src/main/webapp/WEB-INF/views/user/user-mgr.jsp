@@ -15,8 +15,11 @@
   <link href="${ctxStatic}/js/jqGrid/css/jqgrid.css" rel="stylesheet">
   <script src="${ctxStatic}/js/jqGrid/js/jquery-ui-custom.min.js"></script>
   <script src="${ctxStatic}/js/jqGrid/js/jqGrid.js"></script>
+  <script src="${ctxStatic}/js/modules/sys/user.js"></script>
   <script>
-
+     $(function(){
+       $.user.mgrModule.init();
+     });
 
   </script>
 </head>
@@ -31,7 +34,9 @@
   </div>
   <!--工具条-->
   <div class="tool-bar">
-    <a class="tool-bar-btn"><span><b style="background: url('${ctxStatic}/images/refresh.png') 50% 4px no-repeat;">刷新</b></span></a>
+    <a class="tool-bar-btn" href="javascript:void(0);" onclick="parent.refresh()"><span>
+      <b style="background: url('${ctxStatic}/images/refresh.png') 50% 4px no-repeat;">刷新</b>
+    </span></a>
     <span class="tools_separator"></span>
     <a class="tool-bar-btn"><span><b style="background: url('${ctxStatic}/images/btn_add.png') 50% 4px no-repeat;">新增</b></span></a>
     <a class="tool-bar-btn"><span><b style="background: url('${ctxStatic}/images/btn_edit.png') 50% 4px no-repeat;">修改</b></span></a>
@@ -41,7 +46,7 @@
   <div class="parting-line"><span>查询条件</span></div>-->
   <!--查询条件表单-->
   <div class="search-area">
-    <form class="form-inline">
+    <form class="form-inline" id="searchForm">
       <div class="search-form-row">
         <div class="form-group">
           <label for="exampleInputName2">用户名</label>
@@ -51,13 +56,12 @@
           <label for="exampleInputName2">姓名</label>
           <input type="text" class="form-control" id="exampleInputName1" placeholder="Jane Doe">
         </div>
+        <button class="btn btn-default" id="btnSearch">查询</button>
       </div>
     </form>
   </div>
   <!--数据列表-->
-  <div id="dataGrid">
-    <table id="gridTable"></table>
-    <div id="gridPager"></div>
+  <div id="dataGrid" class="data-grid">
   </div>
 </div>
 
