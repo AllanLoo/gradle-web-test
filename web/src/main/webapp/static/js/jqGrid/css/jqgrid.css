@@ -829,13 +829,15 @@ a.g-menu-item, a.soptclass, a.clearsearchclass { cursor: pointer; }
 
 .jqgridNotdata {
 	width:99.3%;
-	border-bottom:#ccc 1px solid;
 	padding:3px;
-	color:red;
+	color:#8c8c8c;
 	position:absolute;
 	z-index:1000;
     top:0px;
     background:#fff;
+	font-size: 12pt;
+	font-weight: bolder;
+	text-align: center;
 }
 .editable {
     border:none;

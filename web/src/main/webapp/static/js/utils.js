@@ -4,6 +4,17 @@
  *
  */
 ;(function($){
+    /**
+     * 将表单序列化成json对象
+     * @returns {{}}
+     */
+    $.fn.serializeJson=function(){
+        var serializeObj={};
+        $(this.serializeArray()).each(function(){
+            serializeObj[this.name]=this.value;
+        });
+        return serializeObj;
+    };
     function CommonUtils(){
     }
 
@@ -84,7 +95,7 @@
            gridPagerTarget:"#gridPager",
            method:"GET",
            datatype:"json",
-           height:$(window).height() - 175,
+           height:$(window).height() - 169,
            rownumbers:true,
            sortable:true,
            sortorder:"desc",
@@ -119,14 +130,18 @@
             sortorder: setting.sortorder,
             rownumbers: setting.rownumbers,
             shrinkToFit: false,
+           viewrecords:true,
            rowList:[15,20,50,100],
            delay:true,
            jsonReader : {
                root:"datas",
                page: "pageNo",
-               rows:"pageSize",
                total: "totalPages",
                records: "count"
+           },
+           prmNames:{
+               page:"pageNo",
+               rows:"pageSize"
            },
            loadError:function(xhr,status,error){
               alert("出错了");
@@ -144,6 +159,7 @@
                 if(param){
                     gridHandler.setGridParam({postData:param});
                 }
+                gridHandler.trigger('reloadGrid');
             }
         }
         return grid;
@@ -178,4 +194,5 @@
 
     var cu = new CommonUtils();
     $.extend({commonUtils:cu});
+
 })(jQuery);

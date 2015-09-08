@@ -63,9 +63,10 @@ public class Page<T> {
             this.pageSize = defaultPageSize;
         }
         // 设置排序参数
-        String orderBy = request.getParameter("orderBy");
-        if (StringUtils.isNotBlank(orderBy)){
-            this.setOrderBy(orderBy);
+        String orderByField = request.getParameter("sidx");
+        String orderBySord = request.getParameter("sord");
+        if (StringUtils.isNotBlank(orderByField) && StringUtils.isNotBlank(orderBySord)){
+            this.setOrderBy(orderByField+" "+orderBySord);
         }
     }
 

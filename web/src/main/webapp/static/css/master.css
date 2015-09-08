@@ -589,7 +589,10 @@ input {
   padding: 2px 5px !important;
   width: 130px !important;
 }
-
+.btn-search{
+  padding-top:3px !important;
+  padding-bottom:3px !important;
+}
 /*表格数据*/
 /* line 472, ../sass/master.scss */
 .data-grid {

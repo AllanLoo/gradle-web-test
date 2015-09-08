@@ -25,8 +25,8 @@ allprojects{
     group = 'com.isp'
     version = '1.0-SNAPSHOT'
 
-    sourceCompatibility = 1.8//编译JDK版本
-    targetCompatibility = 1.8//目标JDK版本
+    sourceCompatibility = 1.7//编译JDK版本
+    targetCompatibility = 1.7//目标JDK版本
 
     compileJava.options.encoding = 'UTF-8'
     compileTestJava.options.encoding = 'UTF-8'

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--可参考http://blog.csdn.net/haidage/article/details/6794509-->
-<configuration>
+<configuration debug="true">
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <!--控制台的日志，测试环境和生产环境控制台不允许出现日志，为off；开发环境不过滤任何级别，为all-->
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
             <level>@log.appender.stdout.level@</level>
         </filter>
         <encoder>
-            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{40} - %msg%n</pattern>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level [%logger{40}] - %msg%n</pattern>
         </encoder>
     </appender>
 
@@ -24,16 +24,14 @@
             <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{40} - %msg%n</pattern>
         </encoder>
     </appender>
-    <!--SQL的日志，测试环境和生产环境过滤Error级别，并向上传递；开发环境过滤debug级别，并向上传递-->
-    <logger name="java.sql" level="@log.logger.sql.level@" >
+
+    <!--项目中的日志，测试环境和生产环境过滤info级别，不向上传递；开发环境过滤debug级别，并向上传递-->
+    <logger name="com.isp" level="@log.logger.project.level@" addtivity = "false">
         <appender-ref ref="STDOUT" />
-    </logger>
-    <!--项目中的日志，测试环境和生产环境过滤info级别，并向上传递；开发环境过滤debug级别，并向上传递-->
-    <logger name="com.isp" level="@log.logger.project.level@" >
-        <appender-ref ref="STDOUT" />
+        <appender-ref ref="FILE" />
     </logger>
 
-    <root level="debug">
+    <root level="ERROR">
         <appender-ref ref="STDOUT" />
         <appender-ref ref="FILE" />
     </root>

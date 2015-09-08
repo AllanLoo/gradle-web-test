@@ -2,28 +2,28 @@ package com.isp.common.web.bean;
 
 /**
  * Created by Administrator on 2015/9/7.
- * ÏµÍ³ÏìÓ¦ÊµÌåÀà£¬ÓÃÓÚajax·µ»Ø
+ * ç³»ç»Ÿå“åº”å®ä½“ç±»ï¼Œç”¨äºajaxè¿”å›
  */
 public class ResponseView {
     /**
-     * ·şÎñÆ÷ÏìÓ¦Òì³£
+     * æœåŠ¡å™¨å“åº”å¼‚å¸¸
      */
     public final static int SERVER_RESPONSE_ERROR = 500;
     /**
-     * ·şÎñÆ÷ÏìÓ¦³É¹¦
+     * æœåŠ¡å™¨å“åº”æˆåŠŸ
      */
     public final static int SERVER_RESPONSE_SUCCESS = 200;
 
     /**
-     * ×´Ì¬
+     * çŠ¶æ€
      */
     private int status;
     /**
-     * ÏûÏ¢
+     * æ¶ˆæ¯
      */
     private String message;
     /**
-     * Êı¾İ
+     * æ•°æ®
      */
     private Object data;
 

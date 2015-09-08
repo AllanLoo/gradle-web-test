@@ -56,7 +56,7 @@
           <label for="exampleInputName2">姓名</label>
           <input type="text" class="form-control" id="exampleInputName1" placeholder="Jane Doe">
         </div>
-        <button class="btn btn-default" id="btnSearch">查询</button>
+        <button class="btn btn-default btn-search" id="btnSearch" type="button">查询</button>
       </div>
     </form>
   </div>

@@ -23,13 +23,13 @@
        this.renderDataGrid = function(){
            grid = $.commonUtils.createGridWithPager({
                   url:G_ACCESS_ROOT_PATH+"/listByPage",
-                  param:$("#searchForm").serialize(),
+                  param:$("#searchForm").serializeJson(),
                   colModel:[
-                      {name:"姓名",index:"realName",sortable:false,with:100},
-                      {name:"登录名",index:"userName",sortable:false,with:100},
-                      {name:"邮箱",index:"userEmail",sortable:false,with:100},
-                      {name:"手机",index:"phone",sortable:false,with:100},
-                      {name:"在职状态",index:"userStatus",with:80,formatter:function(cellvalue, options, rowObject){
+                      {label:"姓名",name:"realName",sortable:false,width:150,align:"center"},
+                      {label:"登录名",name:"userName",sortable:false,width:150,align:"center"},
+                      {label:"邮箱",name:"userEmail",sortable:false,width:150,align:"center"},
+                      {label:"手机",name:"phone",sortable:false,width:150,align:"center"},
+                      {label:"在职状态",name:"userStatus",width:120,align:"center",formatter:function(cellvalue, options, rowObject){
                           if(cellvalue == 0){
                               return "离职";
                           }
@@ -37,7 +37,8 @@
                               return "在职";
                           }
                       }},
-                      {name:"账号状态",index:"accountStatus",with:80,formatter:function(cellvalue, options, rowObject){
+                      {label:"账号状态",name:"accountStatus",width:120,align:"center",
+                          formatter:function(cellvalue, options, rowObject){
                           if(cellvalue == 0){
                               return "离线";
                           }
@@ -56,7 +57,7 @@
          * 数据检索
          */
         this.doSearch = function(){
-            grid.loadData($("#searchForm").serialize());
+            grid.loadData($("#searchForm").serializeJson());
         };
 
         /**

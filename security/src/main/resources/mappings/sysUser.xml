@@ -11,9 +11,28 @@
        <result column="ACCOUNT_STATUS" property="accountStatus"/>
    </resultMap>
 
- <select id="findUserByUserName" resultMap="userMap" parameterType="string">
-      SELECT ID,USER_NAME,REAL_NAME,PASSWORD,PHONE,USER_STATUS,EMAIL,ACCOUNT_STATUS FROM T_USER
-      WHERE USER_NAME = #{_parameter}
- </select>
+    <select id="findUserByUserName" resultMap="userMap" parameterType="string">
+          SELECT ID,USER_NAME,REAL_NAME,PASSWORD,PHONE,USER_STATUS,EMAIL,ACCOUNT_STATUS FROM T_USER
+          WHERE USER_NAME = #{_parameter}
+     </select>
 
+    <select id="findList" resultMap="userMap" parameterType="SysUser">
+        SELECT ID,USER_NAME,REAL_NAME,PASSWORD,PHONE,USER_STATUS,EMAIL,ACCOUNT_STATUS FROM T_USER
+        <where>
+            <if test="userName != null and userName != ''">
+                INSTR(USER_NAME,#{userName}) > 0
+            </if>
+            <if test="realName != null and realName !=''">
+                INSTR(REAL_NAME,#{realName}) > 0
+            </if>
+        </where>
+        <choose>
+            <when test="page !=null and page.orderBy != null and page.orderBy != ''">
+                ORDER BY ${page.orderBy}
+            </when>
+            <otherwise>
+                ORDER BY id
+            </otherwise>
+        </choose>
+    </select>
 </mapper>

@@ -2073,6 +2073,8 @@ $.jgrid = {
                     } else {
                         $('.jqgridNotdata').width($jqgrid_bdiv.width() - 6);
                     }
+                    $('.jqgridNotdata').css("padding-top",$jqgrid_bdiv.height()/2-10)
+                                      .css("padding-bottom",$jqgrid_bdiv.height()/2-10);
                 }
                 //去掉树表格图标
                 $('.ui-icon-radio-off').hide();//$('.ui-icon-radio-off').each(function () { $(this).parent().width($(this).parent().width() - 2) })
