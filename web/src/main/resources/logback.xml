@@ -26,7 +26,7 @@
     </appender>
 
     <!--项目中的日志，测试环境和生产环境过滤info级别，不向上传递；开发环境过滤debug级别，并向上传递-->
-    <logger name="com.isp" level="@log.logger.project.level@" addtivity = "false">
+    <logger name="com.isp" level="@log.logger.project.level@" additivity = "false">
         <appender-ref ref="STDOUT" />
         <appender-ref ref="FILE" />
     </logger>

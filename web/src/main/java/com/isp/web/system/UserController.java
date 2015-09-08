@@ -45,7 +45,6 @@ public class UserController extends BaseController{
         }catch (Exception e){
             logger.error("分页显示用户列表时发生异常："+e.getMessage());
         }
-        logger.error("分页显示用户列表时发生异常：000000");
         return page;
     }
 }
