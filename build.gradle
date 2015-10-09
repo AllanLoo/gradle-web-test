@@ -40,6 +40,7 @@ allprojects{
 }
 
 ext {
+    //自定义版本号配置
     commonsLangVersion = "3.3.2"
     commonsIoVersion = "2.4"
     commonsCodecVersion = "1.9"
@@ -61,6 +62,10 @@ ext {
     shiroVersion = "1.2.3"
     sitemeshVersion="2.4.2"
     guavaVersion="17.0"
+    activityVersion="5.18.0"
+   //自定义配置
+    env = defaultProperty()
+    resourcesDir = "${projectDir}/configs"
 }
 
 
@@ -156,27 +161,14 @@ project(':platform-web'){
     apply plugin:'war'
     //申请gretty插件
     apply plugin: 'org.akhikhl.gretty'
-    //源集处理
-    sourceSets {
-        main {
-            resources{
-                exclude "config/**"
-            }
-        }
-    }
-    //自定义配置
-    ext{
-        env = defaultProperty()
-        resourcesDir = "${projectDir}/src/main/resources"
-        tomcatVersion = '7.0.59'
-    }
+
 
     //拷贝配置文件到resources目录下，并根据运行环境替换变量值
     processResources{
         from("${resourcesDir}"){
-            include "sysconfig.properties","logback.xml"
+            include "sysconfig.properties","logback.xml","ehcache-local.xml"
             filter(org.apache.tools.ant.filters.ReplaceTokens,
-                    tokens:loadProperties("${resourcesDir}/config/${env}-config.properties"))
+                    tokens:loadProperties("${resourcesDir}/env/${env}-config.properties"))
         }
     }
 
@@ -219,6 +211,20 @@ project(':platform-security'){
     }
 }
 
+project(':platform-workflow'){
+    dependencies {
+        compile("org.activiti:activiti-engine:$activityVersion")
+        compile("org.activiti:activiti-spring:$activityVersion")
+        compile("org.activiti:activiti-explorer:$activityVersion"){
+            exclude group:'com.vaadin',module:'vaadin'
+            exclude group:'org.vaadin.addons',module:'dcharts-widget'
+            exclude group:'org.activiti',module:'activiti-simple-workflow'
+        }
+        compile("org.activiti:activiti-modeler:$activityVersion")
+        compile("org.activiti:activiti-diagram-rest:$activityVersion")
+        compile project(":platform-common")
+    }
+}
 
 task wrapper(type: Wrapper) {
     //定义GradleWrapper下载的Gradle版本

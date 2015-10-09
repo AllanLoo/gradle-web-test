@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ehcache updateCheck="false" name="defaultCache">
 
-	<diskStore path="../temp/platform/ehcache" />
+	<diskStore path="@cache.disk.path@" />
 
 	<!--
 	name：Cache的名称，必须是唯一的(ehcache会把这个cache放到HashMap里)。

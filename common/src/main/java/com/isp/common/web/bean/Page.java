@@ -3,7 +3,6 @@ package com.isp.common.web.bean;
 import com.isp.common.utils.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
